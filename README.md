@@ -6,7 +6,7 @@ Responsive, css transitions based image slider/gallery/carousel for react.js
 ## Installation
 
 ```
-npm install react-image-slider
+npm install @deedmob/react-image-slider
 ```
 
 and add css file from `./node_modules/react-image-slider/lib/image-slider.css`
@@ -42,6 +42,7 @@ export default React.createClass({
 
 In order to run demo, execute:
 ```
+npm install
 cd example
 npm install
 npm start

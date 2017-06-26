@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ImageSliderHoc from './ImageSliderHoc';
 
 class Slider extends React.Component {
@@ -12,6 +13,8 @@ class Slider extends React.Component {
     this.isOpaque = this.isOpaque.bind(this);
     this.animate = this.animate.bind(this);
 
+    this._isMounted = false;
+
     this.state = {
       images: [],
       currentPosition: 0,
@@ -20,11 +23,13 @@ class Slider extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.setVisibleItems(this.props.visibleItems);
     window.addEventListener('resize', this.setVisibleItems.bind(this, this.props.visibleItems));
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     this.clearAnimate();
     window.removeEventListener('resize', this.setVisibleItems.bind(this, this.props.visibleItems));
   }
@@ -46,16 +51,20 @@ class Slider extends React.Component {
   }
 
   setVisibleItems(currentVisibleItems) {
-    const container = document.querySelector('.rsc-slider');
-    const visibleItems = (container && container.offsetWidth < 720) ? 1 : currentVisibleItems;
-    this.setState({ visibleItems });
+    if(this._isMounted){
+      const container = document.querySelector('.rsc-slider');
+      const visibleItems = (container && container.offsetWidth < 720) ? 1 : currentVisibleItems;
+      this.setState({ visibleItems });
+    }
   }
 
   sliderStyle(classname) {
-    const items = document.querySelector(classname);
-    const itemWidth = items ? items.offsetWidth : 0;
-    const shift = itemWidth * this.state.currentPosition;
-    return { transform: `translateX(-${shift}px)` };
+    if(this._isMounted){
+      const items = document.querySelector(classname);
+      const itemWidth = items ? items.offsetWidth : 0;
+      const shift = itemWidth * this.state.currentPosition;
+      return { transform: `translateX(-${shift}px)` };
+    }
   }
 
   isOpaque(key) {
@@ -65,14 +74,16 @@ class Slider extends React.Component {
   }
 
   animate() {
-    if (this.state.interval) {
-      window.clearInterval(this.state.interval);
+    if(this._isMounted){
+      if (this.state.interval) {
+        window.clearInterval(this.state.interval);
+      }
+      if (!this.props.delay) {
+        return false;
+      }
+      const interval = window.setInterval(this.scrollRight, this.props.delay);
+      this.setState({ interval });
     }
-    if (!this.props.delay) {
-      return false;
-    }
-    const interval = window.setInterval(this.scrollRight, this.props.delay);
-    this.setState({ interval });
   }
 
   clearAnimate() {
