@@ -71,7 +71,7 @@ export default function ImageSliderHoc(Component) {
   WrapperComponent.defaultProps = {
     isInfinite: true,
     delay: 5000,
-    visibleItems: 4,
+    visibleItems: 6,
   };
 
   return WrapperComponent;

@@ -18,14 +18,15 @@ class Slider extends React.Component {
     this.state = {
       images: [],
       currentPosition: 0,
-      interval: null
+      interval: null,
+      visibleItems: props.visibleItems
     };
   }
 
   componentDidMount() {
-    this._isMounted = true;
     this.setVisibleItems(this.props.visibleItems);
     window.addEventListener('resize', this.setVisibleItems.bind(this, this.props.visibleItems));
+    this._isMounted = true;
   }
 
   componentWillUnmount() {
