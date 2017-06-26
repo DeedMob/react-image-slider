@@ -15,7 +15,9 @@ class App extends React.Component {
 
     return (
       <Slider images={images} isInfinite delay={false}>
-        {images.map((image, key) => <div key={key}><img src={image} alt="" /></div>)}
+        {images.map((image, key) =>
+          <div key={key}><img src={image} alt="" height={"400px"} width={"400px"} /></div>
+        )}
       </Slider>
     );
   }
