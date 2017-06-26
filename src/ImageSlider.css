@@ -1,8 +1,8 @@
 .rsc-container {
   width: 100%;
   position: relative;
-  width: 80%;
   margin: 0 auto;
+  overflow: hidden;
 }
 .rsc-slider {
   display: -webkit-flex;
@@ -24,7 +24,7 @@
 }
 
 .rsc-slider-item-img img {
-  max-width: 100%;
+  width: 100%;
 }
 
 .rsc-slider-item_transparent {
