@@ -15,12 +15,14 @@
 }
 .rsc-slider-item {
   width: 100%;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
 }
 .rsc-slider-item-img {
   width: 100%;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 15px;
 }
 
 .rsc-slider-item-img img {

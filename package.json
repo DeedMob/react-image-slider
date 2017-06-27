@@ -1,6 +1,6 @@
 {
   "name": "@deedmob/react-image-slider",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Image slider component for React",
   "main": "lib/ImageSlider.js",
   "keywords": [
