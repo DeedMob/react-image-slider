@@ -62,7 +62,7 @@ export default function ImageSliderHoc(Component) {
     }
   }
 
-  WrapperComponent.propTypes = React.PropTypes.shape({
+  WrapperComponent.propTypes = PropTypes.shape({
     visibleItems: PropTypes.number.isRequired,
     images: PropTypes.array.isRequired,
     delay: PropTypes.number.isRequired,
